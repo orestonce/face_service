@@ -1,0 +1,9 @@
+version:        "3.4"
+services:
+  face_service:
+    build:
+        context: .
+        target: face_service
+    restart: always
+    ports:
+      - 8080:8080
