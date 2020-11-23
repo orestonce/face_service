@@ -3,8 +3,9 @@ RUN apk --no-cache --update upgrade && apk --no-cache add ca-certificates
 RUN apk --no-cache add gcc g++ cmake wget git make
 WORKDIR /data/model
 RUN wget https://github.com/orestonce/face_service/releases/download/0.1/SeetaFace2.tar.bz2 && tar xfj SeetaFace2.tar.bz2 && rm -f SeetaFace2.tar.bz2
-
-ADD 3rd /data/3rd
+WORKDIR /data/
+RUN wget https://github.com/orestonce/face_service/releases/download/0.1/3rd.tar.bz2
+RUn tar xfj 3rd.tar.bz2
 WORKDIR /data/3rd
 RUN mkdir libfacedetection/build && cd libfacedetection/build && cmake .. && make
 RUN sed -i 's/ -msse2 -mfma//g' SeetaFace2/SeetaNet/CMakeLists.txt && \
